@@ -1,40 +1,36 @@
-name: Terraform CI CD pipeline for Deploying AWS Resources 
-run-name: ${{github.actor}} has triggered the pipeline
-
-on: 
-    push: 
-        branches:
-            - 'main'
-env:
-    AWS_ACCESS_KEY: ${{secrets.AWS_ACCESS_KEY}}
-    AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-
-jobs:
-    build-infra:
-        name: terraform-ci-cd
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-               uses: actions/checkout@v2
-            - name: Set up Terraform
-               uses: hashicorp/setup-terraform@v2
-            - name: Terraform init
-               id: init
-               run: terrafrom init
-               working-directory: ./demo-1
-
-            - name: Terraformvalidate
-               id: validate
-               run: terrafrom validate
-               working-directory: ./demo-1
-
-            - name: Terraformplan
-               id: plan
-               run: terrafrom plan 
-               working-directory:  ./demo-1
-
-            - name: Terraform Apply
-               id: apply
-               run: terrafrom apply --auto-approve
-               working-directory: ./demo-1
-
+---
+   name: Terraform CI CD pipeline for Deploying AWS Resources
+   run-name: ${{github.actor}} has triggered the pipeline
+   on:
+     push:
+       branches:
+         - main
+   env:
+     AWS_ACCESS_KEY: ${{secrets.AWS_ACCESS_KEY}}
+     AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+   jobs:
+     build-infra:
+       name: terraform-ci-cd
+       runs-on: ubuntu-latest
+       steps:
+         - name: Checkout
+           uses: actions/checkout@v2
+         - name: Set up Terraform
+           uses: hashicorp/setup-terraform@v2
+         - name: Terraform init
+           id: init
+           run: terrafrom init
+           working-directory: ./demo-1
+         - name: Terraformvalidate
+           id: validate
+           run: terrafrom validate
+           working-directory: ./demo-1
+         - name: Terraformplan
+           id: plan
+           run: terrafrom plan
+           working-directory: ./demo-1
+         - name: Terraform Apply
+           id: apply
+           run: terrafrom apply --auto-approve
+           working-directory: ./demo-1
+   
