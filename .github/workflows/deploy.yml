@@ -19,18 +19,18 @@
            uses: hashicorp/setup-terraform@v2
          - name: Terraform init
            id: init
-           run: terrafrom init
+           run: terraform  init
            working-directory: ./demo-1
          - name: Terraformvalidate
            id: validate
-           run: terrafrom validate
+           run: terraform validate
            working-directory: ./demo-1
          - name: Terraformplan
            id: plan
-           run: terrafrom plan
+           run: terraform plan
            working-directory: ./demo-1
          - name: Terraform Apply
            id: apply
-           run: terrafrom apply --auto-approve
+           run: terraform apply --auto-approve
            working-directory: ./demo-1
    
